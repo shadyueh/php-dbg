@@ -21,3 +21,6 @@ services:
       MYSQL_USER: dbadmin
       MYSQL_PASSWORD: dbpass
       MYSQL_ROOT_PASSWORD: supauser
+
+  phpqa:
+      image: jakzal/phpqa:php7.1-alpine
