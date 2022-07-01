@@ -13,12 +13,19 @@ services:
       - .docker/logs/nginx:/var/log/nginx/
   
   php:
-    image: php:fpm-alpine
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    container_name: php8-X
     networks:
       - internal
     environment:
-      XDEBUG_MODE: debug
-      XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
+      XDEBUG_MODE: develop,debug
+      XDEBUG_CONFIG: 
+        client_host=host.docker.internal \
+        client_port=9003 \
+        start_with_request=yes \
+        discover_client_host=0
     volumes:
       - ./src/:/var/www/html
 
